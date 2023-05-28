@@ -5,7 +5,6 @@ from random import randint
 from pgzero.actor import Actor
 from pgzero.clock import clock
 
-# from pgzero.game import screen
 
 WIDTH = 800
 HEIGHT = 600
@@ -54,7 +53,14 @@ def draw():
     return
 
 def reset_dancer():
-    pass
+    global game_over
+    if not game_over:
+        dancer.image = "dancer-start"
+        up.image = "up"
+        right.image = "right"
+        down.image = "down"
+        left.image = "left"
+    return
 
 def update_dancer(move):
     global game_over
@@ -90,7 +96,16 @@ def next_move():
     pass
 
 def on_key_up(key):
-    pass
+    global score, game_over, move_list, current_move
+    if key == keys.UP:
+        update_dancer(0)
+    elif key == keys.RIGHT:
+        update_dancer(1)
+    elif key == keys.DOWN:
+        update_dancer(2)
+    elif key == keys.LEFT:
+        update_dancer(3)
+    return
 
 def update():
     pass
