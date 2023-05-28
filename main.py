@@ -3,6 +3,8 @@ import pgzero
 from random import randint
 
 from pgzero.actor import Actor
+from pgzero.clock import clock
+
 # from pgzero.game import screen
 
 WIDTH = 800
@@ -54,8 +56,26 @@ def draw():
 def reset_dancer():
     pass
 
-def update_dance(move):
-    pass
+def update_dancer(move):
+    global game_over
+    if not game_over:
+        if move == 0:
+            up.image = "up-lit"
+            dancer.image = "dancer-up"
+            clock.schedule(reset_dancer, 0.5)
+        elif move == 1:
+            right.image = "right-lit"
+            dancer.image = "dancer-right"
+            clock.schedule(reset_dancer, 0.5)
+        elif move == 2:
+            down.image = "down-lit"
+            dancer.image = "dancer-down"
+            clock.schedule(reset_dancer, 0.5)
+        else:
+            left.image = "left-lit"
+            dancer.image = "dancer-left"
+            clock.schedule(reset_dancer, 0.5)
+    return
 
 def display_moves():
     pass
